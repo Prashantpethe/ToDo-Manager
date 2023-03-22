@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ToDoService {
@@ -32,5 +33,29 @@ public class ToDoService {
        ToDo toDo= todos.stream().filter(t->toDoId == t.getId()).findAny().get();
        logger.info("ToDo:{}",toDo);
        return toDo;
+    }
+
+
+
+    public ToDo updateToDo(ToDo newToDo, int todoId) {
+
+        todos= todos.stream().map(t->{
+              if(t.getId()==todoId)
+              {
+                  t.setTitle(newToDo.getTitle());
+                  t.setContent(newToDo.getContent());
+                  t.setStatus(newToDo.getStatus());
+                  return t;
+              }else{
+                  return t;
+              }
+          }).collect(Collectors.toList());
+      newToDo.setId(todoId);
+      return newToDo;
+    }
+
+    public void deleteToDo(int todoId) {
+        logger.info("Todo is being deleted");
+        todos = todos.stream().filter(t->t.getId()!=todoId).collect(Collectors.toList());
     }
 }

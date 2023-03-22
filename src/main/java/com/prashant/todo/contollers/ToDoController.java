@@ -46,4 +46,17 @@ public class ToDoController {
         ToDo todo = toDoService.getToDo(todoId);
         return ResponseEntity.ok(todo);
     }
+
+    @PutMapping("/{todoId}")
+    public ResponseEntity<ToDo> updateToDoHandler(@RequestBody ToDo newToDo,@PathVariable int todoId){
+        ToDo todo=toDoService.updateToDo(newToDo,todoId);
+        return new ResponseEntity<>(todo,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{todoId}")
+    public ResponseEntity deleteToDoHandler(@PathVariable int todoId)
+    {
+        toDoService.deleteToDo(todoId);
+        return ResponseEntity.ok("ToDo deleted successfully");
+    }
 }
