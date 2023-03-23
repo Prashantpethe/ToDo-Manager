@@ -1,5 +1,9 @@
 package com.prashant.todo.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class ToDo {
 
     private int id;
@@ -7,14 +11,21 @@ public class ToDo {
     private String content;
     private String status;
 
+    private Date addedDate;
+
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private Date toDoDate;
+
     public ToDo() {
     }
 
-    public ToDo(int id, String title, String content, String status) {
+    public ToDo(int id, String title, String content, String status,Date addedDate,Date  toDoDate) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.status = status;
+        this.addedDate = addedDate;
+        this.toDoDate = toDoDate;
     }
 
     public int getId() {
@@ -23,6 +34,22 @@ public class ToDo {
 
     public String getTitle() {
         return title;
+    }
+
+    public Date getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(Date addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public Date getToDoDate() {
+        return toDoDate;
+    }
+
+    public void setToDoDate(Date toDoDate) {
+        this.toDoDate = toDoDate;
     }
 
     public String getContent() {
@@ -58,6 +85,8 @@ public class ToDo {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", status='" + status + '\'' +
+                ", addedDate=" + addedDate +
+                ", toDoDate=" + toDoDate +
                 '}';
     }
 }
