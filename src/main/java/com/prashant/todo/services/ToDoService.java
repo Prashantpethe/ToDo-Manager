@@ -4,12 +4,14 @@ import com.prashant.todo.models.ToDo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+//@Component
+@Service
 public class ToDoService {
 
     Logger logger = LoggerFactory.getLogger(ToDoService.class);
