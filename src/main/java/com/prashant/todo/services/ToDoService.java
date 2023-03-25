@@ -1,8 +1,10 @@
 package com.prashant.todo.services;
 
+import com.prashant.todo.exceptions.ResourceFoundException;
 import com.prashant.todo.models.ToDo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +34,7 @@ public class ToDoService {
 
     public ToDo getToDo(int toDoId) {
 
-       ToDo toDo= todos.stream().filter(t->toDoId == t.getId()).findAny().get();
+       ToDo toDo= todos.stream().filter(t->toDoId == t.getId()).findAny().orElseThrow(()->new ResourceFoundException("Todo not found with given ID", HttpStatus.NOT_FOUND));
        logger.info("ToDo:{}",toDo);
        return toDo;
     }

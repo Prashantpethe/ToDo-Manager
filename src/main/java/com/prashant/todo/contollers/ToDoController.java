@@ -27,6 +27,10 @@ public class ToDoController {
     @PostMapping
     public ResponseEntity<ToDo> createToDoHandler(@RequestBody ToDo toDo)
     {
+      //  String str= null;
+      //  logger.info("{}",str.length());
+
+     //   Integer.parseInt("ab123cds");
         logger.info("create todo");
         int id = random.nextInt(9999);
         toDo.setId(id);
@@ -63,4 +67,34 @@ public class ToDoController {
         toDoService.deleteToDo(todoId);
         return ResponseEntity.ok("ToDo deleted successfully");
     }
+
+   /* @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<String> nullPointerExceptionHandler(NullPointerException ex)
+    {
+        System.out.println(ex.getMessage());
+        System.out.println("Null pointer exception generated");
+        return new ResponseEntity<>("Null pointer exception generated" +ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }*/
+
+ /*   @ExceptionHandler(NumberFormatException.class)
+    public ResponseEntity<String> numberFormatExceptionHandler(NumberFormatException nex)
+    {
+        System.out.println(nex.getMessage());
+        System.out.println("Null pointer exception generated");
+        return new ResponseEntity<>("Null pointer exception generated" +nex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }*/
+
+  /*  @ExceptionHandler(value={NumberFormatException.class,NullPointerException.class})
+    public ResponseEntity<String> numberFormatExceptionHandler(Exception e)
+    {
+        System.out.println(e.getMessage());
+        System.out.println("Null pointer exception generated");
+        return new ResponseEntity<>("Null pointer exception generated" +e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }*/
+
+
+
 }
